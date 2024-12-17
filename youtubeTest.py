@@ -5,6 +5,8 @@ import time
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.action_chains import ActionChains
+
 
 driver = webdriver.Chrome()
 
@@ -35,14 +37,26 @@ try:
     
     time.sleep(2)
     
-    #driver.find_element(By.CLASS_NAME,"channel-link yt-simple-endpoint style-scope ytd-channel-renderer").click()
     
     #click_link = driver.find_element(By.XPATH, "/html/body/ytd-app/div[1]/ytd-page-manager/ytd-search/div[1]/ytd-two-column-search-results-renderer/div/ytd-section-list-renderer/div[2]/ytd-item-section-renderer/div[3]/ytd-channel-renderer/div/div[2]/a") 
     click_link = driver.find_element(By.ID,  "main-link")
-    
     click_link.click()
     
-   
+    driver.maximize_window()
+    
+    time.sleep(2)
+    
+    # Scroll down a little using the PAGE_DOWN key
+    actions = ActionChains(driver)
+    actions.send_keys(Keys.PAGE_DOWN).perform()
+    time.sleep(0.5)
+    actions.send_keys(Keys.ARROW_UP).perform()
+    actions.send_keys(Keys.ARROW_UP).perform()
+    actions.send_keys(Keys.ARROW_UP).perform()
+    time.sleep(0.5)
+    
+    click_link = driver.find_elements(By.XPATH, "//ytd-grid-video-renderer[1]//a[@id='video-title']")
+    click_link[0].click()
     
 
 except NoSuchElementException:
