@@ -1,5 +1,5 @@
 import pytest
-from youtubeTest import YoutubePlayer
+from youtubePlayer import YoutubePlayer
 
 
 class TestYoutubePlayer:
@@ -24,9 +24,14 @@ class TestYoutubePlayer:
         
         assert expectedChannelUrl in self.youtubePlayer.searchChannel(self.channelName)
         
+        
     def test_playVideo(self):
         
         assert "/watch" in self.youtubePlayer.playVideo()
+        
+        assert self.youtubePlayer.checkChannel() == self.channelName
+        
+        
         
         
 

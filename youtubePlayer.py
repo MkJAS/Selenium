@@ -68,6 +68,36 @@ class YoutubePlayer:
             assert False, "Video link not found."
         except Exception as e:
             assert False, "Some failure occured: " + e
+            
+            
+    def checkChannel(self): #
+        
+        channelName = self.driver.find_element(By.ID, "channel-name")
+        
+        return channelName.text
+        
+        
+        
+        
+        
+def main():
+     
+    player = YoutubePlayer()
+    
+    player.searchYoutube("youtube")
+    
+    player.searchChannel("Northernlion")
+    
+    player.playVideo()
+    
+    player.checkChannel()
+    
+    
+    
+    
+main()
+    
+    
         
         # Scroll down a little using the PAGE_DOWN key
         # actions = ActionChains(driver)
